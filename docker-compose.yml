@@ -1,0 +1,78 @@
+services:
+  mikrotik:
+    build: .
+    container_name: mikrotik-pro
+    restart: unless-stopped
+    
+    # Privilegios necesarios para networking avanzado y KVM
+    cap_add:
+      - NET_ADMIN
+    
+    # Descomenta las siguientes líneas si estás en Linux con soporte KVM 
+    # para obtener el máximo rendimiento (Casi nativo)
+    # devices:
+    #   - /dev/kvm:/dev/kvm
+    
+    environment:
+      # --- Configuración del Sistema ---
+      - ROUTEROS_VERSION=7.20.6
+      - DISK_SIZE=1G
+      - ROUTEROS_RAM=512
+      - ROUTEROS_CPU=2
+      
+      # --- Credenciales ---
+      # Estas se usan para que el comando 'docker exec -it mikrotik-pro terminal' 
+      # pueda entrar automáticamente por SSH interno.
+      - ROUTEROS_USER=admin
+      - ROUTEROS_PASSWORD=
+      
+      # --- Puertos Específicos ---
+      - PORT_WIREGUARD=13231
+      - PORT_API_SSL=8729
+      
+      # --- Puertos Extra Personalizados ---
+      # Formato: PuertoHost:PuertoGuest:Protocolo, ...
+      # Ejemplo: "1194:1194:udp, 500:500:udp, 1701:1701:tcp"
+      - EXTRA_PORTS=
+      
+    ports:
+      # Formato: "Puerto_Host : Puerto_Contenedor"
+      - "22:2222"          # SSH (Mapeamos el 22 real al 2222 del contenedor)
+      - "8291:8291"        # Winbox
+      - "80:8080"          # Web (HTTP)
+      - "443:4433"         # Web (HTTPS/SSL)
+      - "8728:8728"        # API (Plain)
+      - "8729:8729"        # API (SSL)
+      - "13231:13231/udp"  # WireGuard
+      
+    volumes:
+      # Persistencia de la imagen del router y discos
+      - ./data:/routeros
+      # Scripts de auto-configuración (.rsc)
+      - ./config:/routeros/config
+
+    # Configuración de log para no llenar el disco si hay muchos reintentos
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
+# ¿Qué ha cambiado y por qué?
+# Mapeo de Puertos Host -> Container:
+# He cambiado el mapeo de SSH a "22:2222". Esto significa que cuando hagas ssh admin@ip-de-tu-server, entrarás directamente al MikroTik. Dentro del contenedor, el servicio corre en el 2222 por el redireccionamiento de QEMU.
+# He añadido el puerto 443 (mapeado al 4433 interno) y el 8729 (API SSL).
+# He mapeado el puerto 80 al 8080 interno para que puedas entrar por web normalmente.
+# Variables de Entorno Limpias:
+# He añadido PORT_API_SSL para que coincida con la lógica del script.
+# He dejado EXTRA_PORTS preparado para que solo tengas que rellenarlo si necesitas abrir puertos para VPNs (OpenVPN, L2TP, etc.).
+# Logging:
+# Añadí una sección de logging. QEMU puede generar mucho texto en el buffer de Docker; limitar los logs a 10MB evita que el disco del servidor se llene con el tiempo.
+# Recordatorio de uso:
+# Para entrar por consola rápidamente:
+# code
+# Bash
+# docker exec -it mikrotik-pro terminal
+# Si el router es nuevo: Recuerda que el primer inicio de MikroTik no tiene contraseña. Una vez que le pongas una en Winbox, asegúrate de actualizar la variable ROUTEROS_PASSWORD en este archivo para que el comando terminal y el autorun.rsc sigan funcionando.
+# KVM: Si tu CPU soporta virtualización y estás en Linux, descomenta la sección devices. La diferencia de velocidad es de un 1000% (especialmente en el arranque y procesos de cifrado VPN).
