@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://merch.mikrotik.com/cdn/shop/files/512.png?v=1657867177&width=250" width="50" alt="MikroTik Logo">
+  <img src="https://merch.mikrotik.com/cdn/shop/files/512.png?v=1657867177&width=250" width="50" style="pointer-events: none;" alt="MikroTik Logo">
   <h1>🚀 Dockerized MikroTik RouterOS (CHR)</h1>
   <p><b>La solución definitiva para ejecutar MikroTik CHR con rendimiento nativo KVM en Docker.</b></p>
 
