@@ -133,7 +133,7 @@ echo "🔥 Iniciando QEMU..."
 echo "ℹ️  Acceso Winbox por puerto: 8291"
 echo "ℹ️  Acceso SSH por puerto: 2222"
 
-exec qemu-system-x86_64 $QEMU_ARGS -drive file="$CURRENT_IMG",format=raw,if=virtio $NET_ARGSù
+exec qemu-system-x86_64 $QEMU_ARGS -drive file="$CURRENT_IMG",format=raw,if=virtio $NET_ARGS
 
 
 # Mejoras clave introducidas:
