@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/MikroTik_logo.svg/1280px-MikroTik_logo.svg.png" width="250" alt="MikroTik Logo">
+  <img src="https://merch.mikrotik.com/cdn/shop/files/512.png?v=1657867177&width=250" width="50" alt="MikroTik Logo">
   <h1>🚀 Dockerized MikroTik RouterOS (CHR)</h1>
   <p><b>La solución definitiva para ejecutar MikroTik CHR con rendimiento nativo KVM en Docker.</b></p>
 
   <p>
-    <<a href="https://hub.docker.com/r/dayron95/routeros-kvm"> <img src="https://img.shields.io/badge/Docker_Hub-Ir_al_Repositorio-2496ed?style=for-the-badge&logo=docker&logoColor=white" />
+    <a href="https://hub.docker.com/r/dayron95/routeros-kvm"> <img src="https://img.shields.io/badge/Docker_Hub-Ir_al_Repositorio-2496ed?style=for-the-badge&logo=docker&logoColor=white" />
     <img src="https://img.shields.io/github/stars/Dayron1195/routeros-kvm?style=for-the-badge&logo=github&color=fafafa&labelColor=333" />
     <img src="https://img.shields.io/badge/KVM-Accelerated-orange?style=for-the-badge&logo=linux" />
   </p>
@@ -112,4 +112,4 @@ Puertos Extra: Recuerda declarar los puertos tanto en EXTRA_PORTS como en la sec
 
 ----
 
-<div align="center"> <p><b>Desarrollado por <a href="https://www.google.com/search?q=https://github.com/dayron95">dayron95</a></b></p> <sub>MikroTik y RouterOS son marcas registradas de MikroTikls SIA.</sub> </div>
+<div align="center"> <p><b>Desarrollado por <a href="https://www.google.com/search?q=https://github.com/dayron95">dayron95</a></b></p> <sub><img src="https://merch.mikrotik.com/cdn/shop/files/512.png?v=1657867177&width=250" width="20" alt="MikroTik Logo">MikroTik y RouterOS son marcas registradas de MikroTikls SIA.</sub> </div>
