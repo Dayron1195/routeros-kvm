@@ -9,8 +9,9 @@
     <img src="https://img.shields.io/badge/KVM-Accelerated-orange?style=for-the-badge&logo=linux" />
   </p>
 </div>
-
----
+      
+<div align="center"> <a href="https://github.com/Dayron1195/routeros-kvm/wiki"><img src="https://cdn.simpleicons.org/wikipedia/666666" width="80"></a>
+</div>
 
 ### 📖 Descripción
 Este contenedor permite ejecutar **MikroTik RouterOS (CHR)** de manera ligera y segura. Está diseñado para administradores de red que necesitan instancias de MikroTik rápidas para laboratorios, VPNs o routing interno, eliminando la complejidad de configurar QEMU manualmente.
